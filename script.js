@@ -87,16 +87,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
         let currentImageIndex = 0;
 
-        // Função para mostrar a imagem
         function showImage(index) {
             mainImage.src = produto.images[index];
             currentImageIndex = index;
         }
-
-        // Carrega a primeira imagem
         showImage(0);
 
-        // Lógica dos thumbnails
         thumbnailsContainer.innerHTML = '';
         produto.images.forEach((imgSrc, index) => {
             const thumb = document.createElement('img');
@@ -106,24 +102,18 @@ document.addEventListener('DOMContentLoaded', function() {
             thumbnailsContainer.appendChild(thumb);
         });
 
-        // Lógica das setas de navegação
         prevBtn.addEventListener('click', () => {
             let newIndex = currentImageIndex - 1;
-            if (newIndex < 0) {
-                newIndex = produto.images.length - 1; // Volta para a última imagem
-            }
+            if (newIndex < 0) { newIndex = produto.images.length - 1; }
             showImage(newIndex);
         });
 
         nextBtn.addEventListener('click', () => {
             let newIndex = currentImageIndex + 1;
-            if (newIndex >= produto.images.length) {
-                newIndex = 0; // Volta para a primeira imagem
-            }
+            if (newIndex >= produto.images.length) { newIndex = 0; }
             showImage(newIndex);
         });
 
-        // Lógica das cores
         const colorsContainer = document.getElementById('product-colors');
         colorsContainer.innerHTML = '';
         produto.colors.forEach((color, index) => {
@@ -139,7 +129,6 @@ document.addEventListener('DOMContentLoaded', function() {
             colorsContainer.appendChild(colorOption);
         });
         
-        // Lógica de adicionar ao carrinho
         document.getElementById('product-add-to-cart').addEventListener('click', () => {
             const quantity = parseInt(document.getElementById('quantity-input').value);
             const selectedColor = colorsContainer.querySelector('.color-option.active').dataset.color;
@@ -148,7 +137,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // --- O restante do código do carrinho continua exatamente o mesmo ---
     const cartModal = document.getElementById('cart-modal');
     const closeButton = document.querySelector('.close-button');
     const cartIcon = document.querySelector('.cart-icon-container');
@@ -168,7 +156,49 @@ document.addEventListener('DOMContentLoaded', function() {
     if (closeButton) closeButton.addEventListener('click', closeCart);
     window.addEventListener('click', (event) => { if (event.target == cartModal) closeCart(); });
     if (cartItemsContainer) { cartItemsContainer.addEventListener('click', (event) => { const target = event.target; if (target.classList.contains('remove-item-button')) { removeFromCart(target.dataset.id, target.dataset.color); } if (target.classList.contains('quantity-btn')) { handleQuantityChange(target.dataset.id, target.dataset.color, target.dataset.action); } }); }
-    if (checkoutButton) { checkoutButton.addEventListener('click', () => { if (cart.length === 0) { showToast('Seu carrinho está vazio!'); return; } const whatsAppNumber = "5585991309643"; const shippingOption = document.querySelector('input[name="shipping"]:checked').value; const paymentMethod = document.getElementById('payment-method').value; let message = "Olá, OPOSTO! Gostaria de fazer o seguinte pedido:\n\n"; let total = 0; cart.forEach(item => { const produtoInfo = produtos[item.id]; message += `*Produto:* ${produtoInfo.name}\n`; message += `*Cor:* ${item.color}\n`; message += `*Quantidade:* ${item.quantity}\n`; message += `*Preço Unitário:* R$ ${produtoInfo.price.toFixed(2).replace('.', ',')}\n\n`; total += produtoInfo.price * item.quantity; }); message += `*Subtotal:* R$ ${total.toFixed(2).replace('.', ',')}\n`; message += `*Opção de Entrega:* ${shippingOption}\n`; message += `*Forma de Pagamento:* ${paymentMethod}\n\n`; message += "Aguardo as instruções para finalizar a compra. Obrigado!"; const encodedMessage = encodeURIComponent(message); const whatsappUrl = `https://wa.me/${whatsAppNumber}?text=${encodedMessage}`; window.open(whatsappUrl, '_blank'); }); }
+    
+    if (checkoutButton) {
+        checkoutButton.addEventListener('click', () => {
+            if (cart.length === 0) {
+                showToast('Seu carrinho está vazio!');
+                return;
+            }
+            const whatsAppNumber = "5585991309643";
+            const shippingOption = document.querySelector('input[name="shipping"]:checked').value;
+            const paymentMethod = document.getElementById('payment-method').value;
+            let message = "Olá, OPOSTO! Gostaria de fazer o seguinte pedido:\n\n";
+            let total = 0;
+            
+            cart.forEach(item => {
+                const produtoInfo = produtos[item.id];
+                message += `*Produto:* ${produtoInfo.name}\n`;
+                message += `*Cor:* ${item.color}\n`;
+                message += `*Quantidade:* ${item.quantity}\n`;
+                message += `*Preço Unitário:* R$ ${produtoInfo.price.toFixed(2).replace('.', ',')}\n\n`;
+                total += produtoInfo.price * item.quantity;
+            });
+            
+            message += `*Subtotal:* R$ ${total.toFixed(2).replace('.', ',')}\n`;
+            message += `*Opção de Entrega:* ${shippingOption}\n`;
+            message += `*Forma de Pagamento:* ${paymentMethod}\n\n`;
+            message += "Aguardo as instruções para finalizar a compra. Obrigado!";
+            
+            const encodedMessage = encodeURIComponent(message);
+
+            // =======================================================
+            // AQUI ESTÁ A CORREÇÃO
+            // =======================================================
+            // Formato antigo que pode falhar no iOS:
+            // const whatsappUrl = `https://wa.me/${whatsAppNumber}?text=${encodedMessage}`;
+            // window.open(whatsappUrl, '_blank');
+
+            // Novo formato mais compatível com iOS
+            const whatsappUrl = `whatsapp://send?phone=${whatsAppNumber}&text=${encodedMessage}`;
+            
+            // Mudei para location.href para melhor compatibilidade em celulares
+            window.location.href = whatsappUrl;
+        });
+    }
     
     updateCartDisplay();
 });
