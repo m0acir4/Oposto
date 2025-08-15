@@ -186,17 +186,16 @@ document.addEventListener('DOMContentLoaded', function() {
             const encodedMessage = encodeURIComponent(message);
 
             // =======================================================
-            // AQUI ESTÁ A CORREÇÃO
+            // NOVA ABORDAGEM HÍBRIDA PARA MÁXIMA COMPATIBILIDADE
             // =======================================================
-            // Formato antigo que pode falhar no iOS:
-            // const whatsappUrl = `https://wa.me/${whatsAppNumber}?text=${encodedMessage}`;
-            // window.open(whatsappUrl, '_blank');
-
-            // Novo formato mais compatível com iOS
-            const whatsappUrl = `whatsapp://send?phone=${whatsAppNumber}&text=${encodedMessage}`;
             
-            // Mudei para location.href para melhor compatibilidade em celulares
-            window.location.href = whatsappUrl;
+            // 1. Tenta abrir o aplicativo diretamente
+            window.location.href = `whatsapp://send?phone=${whatsAppNumber}&text=${encodedMessage}`;
+
+            // 2. Define um fallback para a página web caso o app não abra
+            setTimeout(() => {
+                window.location.href = `https://wa.me/${whatsAppNumber}?text=${encodedMessage}`;
+            }, 2500); // Espera 2.5 segundos antes de redirecionar
         });
     }
     
