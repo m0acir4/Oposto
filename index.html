@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OPOSTO - Moda Masculina</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="pagina-home">
+
+    <header class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="/image/Logo oposto.PNG" alt="Logo OPOSTO">
+            </a>
+            <nav class="nav-links">
+                <a href="#home">Início</a>
+                <a href="#produtos">Produtos</a>
+                <a href="#depoimentos">Depoimentos</a>
+                <a href="#contato">Contato</a>
+            </nav>
+            <div class="nav-icons">
+                <a href="#"><i class="fas fa-search"></i></a>
+                <a href="#" class="cart-icon-container">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="cart-counter" class="cart-counter">0</span>
+                </a>
+                <a href="#"><i class="fas fa-user"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <section class="promo-banner">
+        <div class="container">
+            <h2>🔥 Limpa Estoque Oposto 🔥</h2>
+            <p class="promo-highlight">60% DE DESCONTO PARA ESVAZIAR TUDO!</p>
+            <p class="promo-date"><i class="fas fa-calendar-alt"></i> 16 de Agosto | <i class="fas fa-clock"></i> a partir das 9h</p>
+            <span>Não perca essa chance!</span>
+        </div>
+    </section>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="container hero-content">
+                <div class="hero-text">
+                    <h1>Estilo que Define Você.</h1>
+                    <p>Peças autênticas para o homem moderno. Descubra coleções que combinam conforto, qualidade e design arrojado.</p>
+                    <a href="#produtos" class="btn-primary">Ver Coleção</a>
+                </div>
+                <div class="hero-image">
+                    <img src="/image/Capturar.PNG" alt="Homem vestindo roupa estilosa">
+                </div>
+            </div>
+        </section>
+
+        <section id="produtos" class="product-section">
+            <div class="container">
+                <h2>Nossos Destaques</h2>
+                <div class="product-grid">
+                    </div>
+            </div>
+        </section>
+
+        <section id="depoimentos" class="testimonials-section">
+             <div class="container">
+                <h2>O que nossos clientes dizem</h2>
+                <div class="testimonial-card">
+                    <p>"Qualidade incrível e o caimento das peças é perfeito. A OPOSTO virou minha loja favorita, com certeza!"</p>
+                    <h4>- João Silva, São Paulo</h4>
+                </div>
+             </div>
+        </section>
+    </main>
+
+    <footer id="contato" class="footer">
+        <div class="container">
+            <p>&copy; 2025 OPOSTO. Todos os direitos reservados.</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="cart-modal" class="cart-modal">
+        <div class="cart-modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Seu Carrinho</h2>
+            <div id="cart-items" class="cart-items">
+                </div>
+            <div class="cart-summary">
+                <p>Subtotal: <span id="cart-subtotal">R$ 0,00</span></p>
+                <div class="shipping-options">
+                    <h4>Opção de Entrega</h4>
+                    <label><input type="radio" name="shipping" value="Retirada" checked> Retirada no Local</label>
+                    <label><input type="radio" name="shipping" value="Entrega"> Entrega (Consultar taxa)</label>
+                </div>
+                <div class="payment-options">
+                    <h4>Forma de Pagamento</h4>
+                    <select id="payment-method">
+                        <option value="Pix">Pix</option>
+                        <option value="Cartão de Crédito">Cartão de Crédito</option>
+                        <option value="Dinheiro">Dinheiro</option>
+                    </select>
+                </div>
+                <button id="checkout-button" class="btn-primary">Finalizar Compra</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast-container"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

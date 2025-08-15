@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Produto - OPOSTO</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="pagina-produto">
+
+    <header class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="/image/Logo oposto.PNG" alt="Logo OPOSTO">
+            </a>
+            <nav class="nav-links">
+                <a href="index.html#home">Início</a>
+                <a href="index.html#produtos">Produtos</a>
+                <a href="index.html#depoimentos">Depoimentos</a>
+                <a href="index.html#contato">Contato</a>
+            </nav>
+            <div class="nav-icons">
+                <a href="#"><i class="fas fa-search"></i></a>
+                <a href="#" class="cart-icon-container">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="cart-counter" class="cart-counter">0</span>
+                </a>
+                <a href="#"><i class="fas fa-user"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="product-detail-container container">
+            <div class="product-gallery">
+                <div class="main-image-wrapper">
+                    <img src="" alt="Imagem Principal do Produto" id="main-product-image">
+                </div>
+                <div class="product-thumbnails" id="product-thumbnails">
+                    </div>
+            </div>
+
+            <div class="product-info">
+                <h1 id="product-name">Nome do Produto</h1>
+                <p class="product-detail-price" id="product-price">R$ 00,00</p>
+                <p id="product-description">Descrição do produto...</p>
+                
+                <div class="product-options">
+                    <label>Cor:</label>
+                    <div id="product-colors" class="product-colors">
+                        </div>
+                </div>
+
+                <div class="quantity-selector">
+                    <label for="quantity-input">Quantidade:</label>
+                    <input type="number" id="quantity-input" value="1" min="1">
+                </div>
+                
+                <button class="btn-primary" id="product-add-to-cart">Adicionar ao Carrinho</button>
+            </div>
+        </div>
+    </main>
+
+    <footer id="contato" class="footer">
+         <div class="container">
+            <p>&copy; 2025 OPOSTO. Todos os direitos reservados.</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="cart-modal" class="cart-modal">
+        <div class="cart-modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Seu Carrinho</h2>
+            <div id="cart-items" class="cart-items">
+                </div>
+            <div class="cart-summary">
+                <p>Subtotal: <span id="cart-subtotal">R$ 0,00</span></p>
+                <div class="shipping-options">
+                    <h4>Opção de Entrega</h4>
+                    <label><input type="radio" name="shipping" value="Retirada" checked> Retirada no Local</label>
+                    <label><input type="radio" name="shipping" value="Entrega"> Entrega (Consultar taxa)</label>
+                </div>
+                <div class="payment-options">
+                    <h4>Forma de Pagamento</h4>
+                    <select id="payment-method">
+                        <option value="Pix">Pix</option>
+                        <option value="Cartão de Crédito">Cartão de Crédito</option>
+                        <option value="Dinheiro">Dinheiro</option>
+                    </select>
+                </div>
+                <button id="checkout-button" class="btn-primary">Finalizar Compra</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast-container"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
