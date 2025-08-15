@@ -14,19 +14,29 @@
             <a href="index.html" class="logo">
                 <img src="/image/Logo oposto.PNG" alt="Logo OPOSTO">
             </a>
+
             <nav class="nav-links">
                 <a href="index.html#home">Início</a>
                 <a href="index.html#produtos">Produtos</a>
                 <a href="index.html#depoimentos">Depoimentos</a>
                 <a href="index.html#contato">Contato</a>
             </nav>
-            <div class="nav-icons">
-                <a href="#"><i class="fas fa-search"></i></a>
-                <a href="#" class="cart-icon-container">
-                    <i class="fas fa-shopping-cart"></i>
-                    <span id="cart-counter" class="cart-counter">0</span>
-                </a>
-                <a href="#"><i class="fas fa-user"></i></a>
+
+            <div class="header-right">
+                <div class="nav-icons">
+                    <a href="#"><i class="fas fa-search"></i></a>
+                    <a href="#" class="cart-icon-container">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span id="cart-counter" class="cart-counter">0</span>
+                    </a>
+                    <a href="#"><i class="fas fa-user"></i></a>
+                </div>
+
+                <div class="hamburger-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
         </div>
     </header>
@@ -35,7 +45,9 @@
         <div class="product-detail-container container">
             <div class="product-gallery">
                 <div class="main-image-wrapper">
+                    <button id="prev-image-btn" class="gallery-arrow prev">&#10094;</button>
                     <img src="" alt="Imagem Principal do Produto" id="main-product-image">
+                    <button id="next-image-btn" class="gallery-arrow next">&#10095;</button>
                 </div>
                 <div class="product-thumbnails" id="product-thumbnails">
                     </div>
